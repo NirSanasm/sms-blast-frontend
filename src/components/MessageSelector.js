@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 
-const MessageSelector = ({ messages = [], selectedMessage, onSelectMessage }) => {
+const MessageSelector = ({ messages, selectedMessage, onSelectMessage }) => {
   return (
     <div className="bg-white rounded-lg shadow p-6">
       <h3 className="text-lg font-semibold mb-4">Select Message Template</h3>
@@ -15,7 +15,7 @@ const MessageSelector = ({ messages = [], selectedMessage, onSelectMessage }) =>
           className="w-full p-3 border border-gray-300 rounded-lg bg-white appearance-none pr-10 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
         >
           <option value="">Select a message template...</option>
-          {messages.map((message) => (
+          {(Array.isArray(messages) ? messages : []).map((message) => (
             <option key={message.id} value={message.id}>
               {message.title}
             </option>
