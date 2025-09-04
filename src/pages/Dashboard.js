@@ -24,12 +24,19 @@ const Dashboard = () => {
   const loadMessages = async () => {
     try {
       const response = await userAPI.getMessages();
-      setMessages(response.data);
-      if (response.data.length > 0 && !selectedMessage) {
-        setSelectedMessage(response.data[0]);
+      const messagesData = response.data;
+      if (Array.isArray(messagesData)) {
+        setMessages(messagesData);
+        if (messagesData.length > 0 && !selectedMessage) {
+          setSelectedMessage(messagesData[0]);
+        }
+      } else {
+        setMessages([]);
+        toast.error('Failed to load messages: Invalid data format');
       }
     } catch (error) {
       toast.error('Failed to load messages');
+      setMessages([]); // Also handle API call errors
     }
   };
 
