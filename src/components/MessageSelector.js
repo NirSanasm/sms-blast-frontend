@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 
-const MessageSelector = ({ messages, selectedMessage, onSelectMessage }) => {
+const MessageSelector = ({ messages = [], selectedMessage, onSelectMessage }) => {
   return (
     <div className="bg-white rounded-lg shadow p-6">
       <h3 className="text-lg font-semibold mb-4">Select Message Template</h3>
